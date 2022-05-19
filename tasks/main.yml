@@ -1,0 +1,9 @@
+---
+
+- import_tasks: k3s_setup.yml
+  tags:
+    - k3s-setup
+
+- import_tasks: k3s_install.yml
+  tags:
+    - k3s-install
