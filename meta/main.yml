@@ -1,16 +1,14 @@
 ---
 
-dependencies: []
-
 galaxy_info:
+  role_name: uclalib_role_k3s
+  namespace: uclalibrary
   author: Stephen Gurnick
   description: Install instance of k3s
   company: UCLA Library
   license: reference LICENSE file
-  min_ansible_version: 2.9
+  min_ansible_version: "2.9"
   platforms:
-  - name: EL
-    versions:
-    - 7
-    - 8
-  galaxy_tags: []
+    - name: EL
+      versions:
+        - "8"
