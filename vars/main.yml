@@ -1,0 +1,7 @@
+---
+
+# URL of the k3s install script
+k3s_install_script_url: "https://get.k3s.io"
+
+# Path to the k3s installation configuration file (config.yaml)
+k3s_config_path: "/etc/rancher/k3s"

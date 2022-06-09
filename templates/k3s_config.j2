@@ -1,3 +1,20 @@
 ---
+# {{ k3s_config_path }}/config.yaml
+# {{ ansible_managed }}
 
-{{ k3s_exec_options }}
+cluster-init: true
+write-kubeconfig-mode: 444
+tls-san:
+  - {{ ansible_hostname }}
+  {% if k3s_additional_hostnames is defined %}
+    {% for tls_name in k3s_additional_hostnames %}
+  - {{ tls_name }}
+    {% endfor %}
+  {% endif %}
+{% if k3s_token is defined %}
+token: {{ k3s_token }}
+# default token is 32 random hexadecimal digits
+{% endif %}
+{% if k3s_additional_config is defined %}
+{{ k3s_additional_config }}
+{% endif %}

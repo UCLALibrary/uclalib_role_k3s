@@ -5,20 +5,13 @@
     path: "{{ k3s_config_path }}"
     owner: "root"
     group: "root"
-    mode: "0755"
+    mode: "0555"
     state: "directory"
 
-- name: Put in place k3s install configuration file 
-  template: 
+- name: Put in place k3s install configuration file
+  template:
     src: "k3s_config.j2"
     dest: "{{ k3s_config_path }}/config.yaml"
     owner: "root"
     group: "root"
-    mode: "0644"
-
-- name: Disable and stop firewalld
-  service:
-    name: "firewalld"
-    enabled: "no"
-    state: "stopped"
-
+    mode: "0444"
