@@ -1,5 +1,9 @@
 ---
 
+- import_tasks: k3s_iptables.yml
+  tags:
+    - k3s-iptables
+
 - import_tasks: k3s_setup.yml
   tags:
     - k3s-setup
