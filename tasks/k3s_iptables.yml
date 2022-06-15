@@ -19,6 +19,19 @@
     jump: ACCEPT
   notify: Save firewall rules
 
+- name: Allow ICMP
+  iptables:
+    chain: INPUT
+    protocol: ICMP
+    jump: ACCEPT
+
+- name: Allow Loopback
+  iptables:
+    chain: INPUT
+    in_interface: lo
+    jump: ACCEPT
+  notify: Save firewall rules
+
 - name: Allow ssh
   iptables:
     chain: INPUT
@@ -43,6 +56,7 @@
     comment: Accept k3s
   when: k3s_sources is defined
   loop: '{{ k3s_ports | product(k3s_sources) | list }}'
+  notify: Save firewall rules
 
 - name: Default deny incoming connections
   iptables:
