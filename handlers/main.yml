@@ -18,3 +18,9 @@
     path: '{{ k3s_installer.path }}'
     state: absent
   check_mode: false
+
+- name: Start k3s
+  service:
+    name: k3s
+    enabled: true
+    state: started
