@@ -30,6 +30,20 @@
     comment: Accept new SSH connections
   notify: Save firewall rules
 
+# port list at https://rancher.com/docs/k3s/latest/en/installation/installation-requirements/
+- name: Allow k3s
+  iptables:
+    chain: INPUT
+    protocol: '{{ item.0.protocol }}'
+    destination_port: '{{ item.0.port }}'
+    source: '{{ item.1 }}'
+    ctstate: NEW
+    syn: match
+    jump: ACCEPT
+    comment: Accept k3s
+  when: k3s_sources is defined
+  loop: '{{ k3s_ports | product(k3s_sources) | list }}'
+
 - name: Default deny incoming connections
   iptables:
     chain: INPUT

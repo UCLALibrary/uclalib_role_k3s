@@ -5,6 +5,19 @@
 k3s_version: ""
 k3s_channel: "stable"
 
+k3s_ports:
+  - { protocol: TCP, port: '6443' } # API server
+  # - { protocol: UDP, port: '8472' } # Flannel VXLAN
+  # - { protocol: UDP, port: '51820' } # Flannel Wireguard
+  # - { protocol: UDP, port: '51821' } # Flannel Wireguard IPv6
+  - { protocol: TCP, port: '10250' } # Kubelet metrics
+  - { protocol: TCP, port: '2379:2380' } # HA embedded etcd
+
+# [Optional] source IPs to allow access from
+# Example
+# k3s_sources:
+#   - 192.168.1.0/24
+
 # [Optional] additional hostnames to add to generated TLS certificates
 # Example:
 # k3s_additional_hostnames:
