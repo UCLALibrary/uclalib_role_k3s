@@ -1,17 +1,20 @@
 ---
 
-- name: Enable firewall
-  service:
-    name: iptables
-    enabled: true
-    state: started
-
+# This handler must be above Enable firewall, lest the default firewall
+# rules take precedence
 - name: Save firewall rules
   command:
     cmd: service iptables save
     warn: false  # noqa command-instead-of-module
   changed_when: '"Saving firewall rules" in firewall_save.stdout'
   register: firewall_save
+
+- name: Enable firewall
+  service:
+    name: iptables
+    enabled: true
+    state: started
+  when: not ansible_check_mode
 
 - name: Remove k3s installer
   file:
