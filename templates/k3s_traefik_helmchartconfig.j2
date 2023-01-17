@@ -1,0 +1,15 @@
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    tlsOptions:
+      default:
+        minVersion: {{ k3s_traefik_tls_min_version }}
+        cipherSuites: 
+        {% for cipher in k3s_traefik_tls_ciphers %}
+          - {{ cipher }}
+        {% endfor %}

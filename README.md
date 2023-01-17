@@ -49,6 +49,7 @@ Use the following tags to run specific role functions:
   * `k3s-iptables` - set up host based firewall
   * `k3s-setup` - set-up prerequisites for k3s install
   * `k3s-install` - perform install/upgrade of k3s server
+  * `k3s-traefik` - customize traefik configuration
 
 Dependencies
 ------------
