@@ -22,13 +22,7 @@
     state: absent
   check_mode: false
 
-- name: Start k3s
-  service:
-    name: k3s
-    enabled: true
-    state: started
-
-- name: Restart k3s
+- name: (Re)Start k3s
   service:
     name: k3s
     enabled: true
