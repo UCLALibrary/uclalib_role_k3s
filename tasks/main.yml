@@ -11,3 +11,7 @@
 - import_tasks: k3s_install.yml
   tags:
     - k3s-install
+
+- import_tasks: k3s_traefik.yml
+  tags:
+    - k3s-traefik

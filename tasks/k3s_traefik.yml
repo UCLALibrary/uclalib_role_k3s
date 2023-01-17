@@ -1,0 +1,21 @@
+--- 
+
+- name: Determine if Traefik is installed
+  stat: 
+    path: "{{ k3s_manifest_path }}/traefik.yaml"
+  register: traefik_install
+
+- name: Adjust Traefik TLS Configuration
+  block:
+    - name: Include Traefik-specific vars 
+      include_vars: "traefik.yml"
+
+    - name: Put in place Traefik HelmChartConfig manifest
+      template: 
+        src: "k3s_traefik_helmchartconfig.j2"
+        dest: "{{ k3s_manifest_path }}/traefik-helmchartconfig.yaml"
+        owner: "root"
+        group: "root"
+        mode: "0600"
+  when: traefik_install.stat.exists | bool
+  notify: Restart k3s
