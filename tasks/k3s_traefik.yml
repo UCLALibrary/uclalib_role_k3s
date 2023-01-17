@@ -17,5 +17,5 @@
         owner: "root"
         group: "root"
         mode: "0600"
+      notify: (Re)Start k3s
   when: traefik_install.stat.exists | bool
-  notify: (Re)Start k3s
