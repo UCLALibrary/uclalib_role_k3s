@@ -15,3 +15,8 @@
 - import_tasks: k3s_traefik.yml
   tags:
     - k3s-traefik
+
+- import_tasks: k3s_update.yml
+  tags:
+    - never
+    - k3s-update

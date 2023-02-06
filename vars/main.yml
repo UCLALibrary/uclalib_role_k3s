@@ -3,6 +3,9 @@
 # URL of the k3s install script
 k3s_install_script_url: "https://get.k3s.io"
 
+# URL of k3s channel install 
+k3s_channel_install_url: "https://update.k3s.io/v1-release/channels/{{ k3s_channel }}"
+
 # Path to the k3s installation configuration file (config.yaml)
 k3s_config_path: "/etc/rancher/k3s"
 
