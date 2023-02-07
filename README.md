@@ -50,6 +50,8 @@ Use the following tags to run specific role functions:
   * `k3s-setup` - set-up prerequisites for k3s install
   * `k3s-install` - perform install/upgrade of k3s server
   * `k3s-traefik` - customize traefik configuration
+  * `k3s-update` - update k3s to latest version in defined channel (default is `stable` channel)
+    * NOTE: must explicitly call this tag to run the update tasks
 
 Dependencies
 ------------
