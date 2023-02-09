@@ -8,7 +8,7 @@
 
 - name: Get installed k3s version
   shell: 
-    cmd: k3s -v | head -1 | awk '{ print $3 }'
+    cmd: /usr/local/bin/k3s -v | head -1 | awk '{ print $3 }'
   register: k3s_installed_version
   changed_when: false
 
