@@ -1,18 +1,12 @@
 ---
 
-- name: Get k3s channel version 
-  shell:
-    cmd: curl -w '%{url_effective}' -L -s -S {{ k3s_channel_install_url }} -o /dev/null | sed -e 's|.*/||'
-  register: k3s_channel_version
-  changed_when: false
-
 - name: Get installed k3s version
   shell: 
     cmd: /usr/local/bin/k3s -v | head -1 | awk '{ print $3 }'
   register: k3s_installed_version
   changed_when: false
 
-- name: Update k3s to channel version
+- name: Update k3s to version specified in k3s_version
   block:
     - name: Make tempfile for k3s installer
       tempfile:
@@ -37,4 +31,4 @@
         INSTALL_K3S_VERSION: "{{ k3s_version }}"
         INSTALL_K3S_SKIP_START: 'true'
       notify: (Re)Start k3s
-  when: k3s_channel_version.stdout != k3s_installed_version.stdout
+  when: k3s_version != k3s_installed_version.stdout

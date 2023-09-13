@@ -1,15 +1,13 @@
 ---
 
 # Example: v1.23.6+k3s1
-# If not specified, will download most recent version from the 'stable' channel
+# Obtain the k3s version number from the releases page: https://github.com/k3s-io/k3s/releases
+# !!! You must specify a version to install in an Ansible variable !!!
 k3s_version: ""
 k3s_channel: "stable"
 
 k3s_ports:
   - { protocol: TCP, port: '6443' } # API server
-  # - { protocol: UDP, port: '8472' } # Flannel VXLAN
-  # - { protocol: UDP, port: '51820' } # Flannel Wireguard
-  # - { protocol: UDP, port: '51821' } # Flannel Wireguard IPv6
   - { protocol: TCP, port: '10250' } # Kubelet metrics
   - { protocol: TCP, port: '2379:2380' } # HA embedded etcd
 
